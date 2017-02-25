@@ -49,9 +49,15 @@ a {
 
 .thumbnail-item {
     display: inline-block;
-    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
     border: 1px solid rgb(100%, 100%, 100%);
     border: 1px solid rgba(100%, 100%, 100%, 0.8);
+    transition: transform 133ms ease-in-out;
+}
+
+.thumbnail-item:hover {
+    transform: scale(1.2);
 }
 
 .thumbnail-list {
@@ -89,6 +95,12 @@ a {
 .detail-image-frame {
     position: relative;
     text-align: center;
+    transition: transform 333ms cubic-bezier(.17, .67, .25, .97);
+}
+
+.is-tiny {
+    transform: scale(0.001);
+    transition: transform 0ms;
 }
 
 .detail-image {
@@ -105,6 +117,19 @@ a {
     font-size: 40px;
 }
 
+.hidden-detail .detail-image-container {
+    display: none;
+}
+
+.hidden-detail .thumbnail-list {
+    flex-direction: column;
+    align-items: center;
+}
+
+.hidden-detail .thumbnail-item {
+    max-width: 80%;
+}
+
 @media all and (orientation: portrait) {
     .main-content {
         flex-direction: column;
@@ -113,9 +138,10 @@ a {
     .thumbnail-list {
         flex-direction: row;
         order: 2;
+        padding: 35px 0;
     }
     .thumbnail-item {
-        min-width: 100px;
+        max-width: 260px;
     }
 }
 
@@ -128,6 +154,7 @@ a {
         flex-direction: column;
         order: 0;
         margin-left: 20px;
+        padding: 0 35px;
     }
     .thumbnail-item {
         max-width: 260px;
