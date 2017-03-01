@@ -78,6 +78,14 @@ function addNumberHandler(thumbnails) {
     var i;
     var size = thumbnails.length;
 
+    if (size > 10) {
+        size = 10;
+    }
+
+    if (size == 10) {
+        size -= 1;
+        numList[9] = 48;
+    }
     for (i = 0; i < size; i++) {
         numList[i] = 49 + i;
     }
@@ -85,9 +93,14 @@ function addNumberHandler(thumbnails) {
     document.addEventListener('keyup', function(event) {
         event.preventDefault();
         if (numList.indexOf(event.keyCode) != -1) {
-            var thisOtter = numList.indexOf(event.keyCode);
-            setDetailsFromThumb(thumbnails[thisOtter]);
-            showDetails();
+            if (event.keycode === 48) {
+                setDetailsFromThumb(thumbnails[9]);
+                showDetails();
+            } else {
+                var thisOtter = numList.indexOf(event.keyCode);
+                setDetailsFromThumb(thumbnails[thisOtter]);
+                showDetails();
+            }
         }
     });
 }
